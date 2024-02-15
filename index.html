@@ -1,0 +1,75 @@
+<!-- templates/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grievance Redressal</title>
+    <link rel="stylesheet" href='styles.css'>
+    <!-- Include Bootstrap CSS (you may need to download it) -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+    <div class="container mt-5">
+        <h2>Grievance Redressal</h2>
+        <form id="grievanceForm" action="{{ url_for('grievance_form') }}" method="post">
+            <div class="form-group">
+                <label for="language_preference">Step 1: Choose your preferred language:</label>
+                <select class="form-control" id="language_preference" name="language_preference" required>
+                    <option value="en">1 - English</option>
+                    <option value="hi">2 - हिंदी</option>
+                    <option value="gu">3 - ગુજરાતી</option>
+                    <option value="pa">4 - ਪੰਜਾਬੀ</option>
+                    <option value="mr">5 - मराठी</option>
+                    <option value="bn">6 - বাঙ্গালি</option>
+                    <option value="kn">7 - ಕನ್ನಡ</option>
+                    <option value="te">8 - తెలుగు</option>
+                    <option value="ur">9 - اردو</option>
+                    <option value="ta">0 - தமிழ்</option>
+                </select>
+                <button type="button" class="btn btn-primary" onclick="nextStep(2)">Next</button>
+            </div>
+            <div id="step2" style="display: none;">
+                <div class="form-group">
+                    <label for="pincode">Step 2: Please enter your pincode (6 digits):</label>
+                    <input type="text" placeholder="000000" class="form-control" id="pincode" name="pincode" pattern="\d{6}" required>
+                    <small class="form-text text-muted">Enter a valid 6-digit pincode.</small>
+                    <button type="button" class="btn btn-primary" onclick="nextStep(3)">Next</button>
+                </div>
+            </div>
+            <div id="step3" style="display: none;">
+                <div class="form-group">
+                    <label for="aadhar_number">Step 3: Please enter your Aadhar number (12 digits):</label>
+                    <input type="text" placeholder="786409871234" class="form-control" id="aadhar_number" name="aadhar_number" pattern="\d{12}" required>
+                    <small class="form-text text-muted">Enter a valid 12-digit Aadhar number.</small>
+                    <button type="button" class="btn btn-primary" onclick="nextStep(4)">Next</button>
+                </div>
+            </div>
+            <div id="step4" style="display: none;">
+                <div class="form-group">
+                    <label for="action_choice">Step 4: Choose an action:</label>
+                    <select class="form-control" id="action_choice" name="action_choice" required>
+                        <option value="register">1 - Register a Complaint</option>
+                        <option value="check_status">2 - Check Complaint Status</option>
+                    </select>
+                    <button type="button" class="btn btn-primary" onclick="nextStep(5)">Next</button>
+                </div>
+            </div>
+            <div id="step5" style="display: none;">
+                <div class="form-group">
+                    <label for="complaint_description">Step 5: Please describe your complaint:</label>
+                    <textarea placeholder="enter your grievance" class="form-control" id="complaint_description" name="complaint_description" rows="5" required></textarea>
+                    <button type="submit" class="btn btn-primary" onclick="submitForm(event)">Submit Complaint</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <!-- Include Bootstrap JS (you may need to download it) -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <!-- Include script.js -->
+    <script src='script.js'></script>
+</body>
+</html>
